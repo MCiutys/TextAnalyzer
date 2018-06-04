@@ -55,7 +55,9 @@ public class Frame extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				textField.getText();
+				Analyzer analyzer = new Analyzer(textField.getText());
+				analyzer.countWords();
+				analyzer.countUniqueWords();
 			}
 		});
 	}

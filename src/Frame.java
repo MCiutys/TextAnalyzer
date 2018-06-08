@@ -9,11 +9,17 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.BorderLayout;
 
 public class Frame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	private JPanel panel;
+	private JLabel amountOfWords;
+	private JLabel uniqueWords;
 
 	/**
 	 * Launch the application.
@@ -50,14 +56,26 @@ public class Frame extends JFrame {
 		analyzeButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		contentPane.add(analyzeButton);
 		
+		panel = new JPanel();
+		contentPane.add(panel);
+		panel.setLayout(new BorderLayout(0, 0));
+		
+		amountOfWords = new JLabel("Amount of words: ");
+		amountOfWords.setHorizontalAlignment(SwingConstants.LEFT);
+		panel.add(amountOfWords, BorderLayout.NORTH);
+		
+		uniqueWords = new JLabel("Number of unique words: ");
+		uniqueWords.setHorizontalAlignment(SwingConstants.LEFT);
+		panel.add(uniqueWords, BorderLayout.CENTER);
+		
 		
 		analyzeButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Analyzer analyzer = new Analyzer(textField.getText());
-				analyzer.countWords();
-				analyzer.countUniqueWords();
+				TextAnalyzer analyzer = new TextAnalyzer(textField.getText());
+				amountOfWords.setText(amountOfWords.getText() + analyzer.countWords());
+				uniqueWords.setText(uniqueWords.getText() + analyzer.countUniqueWords());
 			}
 		});
 	}

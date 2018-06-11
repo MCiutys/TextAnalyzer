@@ -36,7 +36,22 @@ public class TextAnalyzer {
 	
 	public int coundPalindromes() {
 		if (text.equals("")) return 0;
+		int count = 0;
 		
-		return 0;
+		StringAnalyzer stringAnalyzer = new StringAnalyzer();
+		for (String word : words) {
+			stringAnalyzer.changeText(word);
+			if (stringAnalyzer.isPalindrome()) count++;
+		}
+		
+		return count;
+	}
+	
+	public double calculateAvgLength() {
+		double sum = 0d;
+		for (String word : words) {
+			sum += word.length();
+		}
+		return sum / words.length;
 	}
 }

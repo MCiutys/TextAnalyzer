@@ -1,7 +1,14 @@
 
 public class StringAnalyzer {
 	
+	private static final int SHORT_WORD_LIMIT = 4;
+	private static final int LONG_WORD_LIMIT = 8;
+	
 	private String text;
+	
+	public StringAnalyzer() {
+		text = "";
+	}
 	
 	public StringAnalyzer(String text) {
 		this.text = text;
@@ -22,7 +29,7 @@ public class StringAnalyzer {
 			
 			if (charStart != charEnd) return false;
 			start++;
-			end++;
+			end--;
 		}
 		return true;
 	}
